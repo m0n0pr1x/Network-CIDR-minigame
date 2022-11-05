@@ -17,7 +17,7 @@ def binary_to_ip(addr):
         splitted[n]=str(int((data),2))
     return '.'.join(splitted)
 
-def router_finder(i:str,m:str):
+def nadress_finder(i:str,m:str):
     ip    = "".join(ip_to_binary(i).split("."))
     masque= "".join(ip_to_binary(m).split("."))
     adr_reseau_raw=[str(int(bool(int(masque[i]) and int(ip[i])))) for i in range(32)]
@@ -117,7 +117,7 @@ def solution():
         check.grid_forget()
         score_val-=50
         score['text']=f'Score:{score_val}'
-        solution_ip.set(router_finder(ip_val['text'],masque_val['text']))
+        solution_ip.set(nadress_finder(ip_val['text'],masque_val['text']))
         solution_broadcast.set(broadcast_finder(ip_val['text'],masque_val['text']))
     elif (check['state']=="disabled"):
         check["state"]="normal"
@@ -133,7 +133,7 @@ def check_solution():
     global b_check
     adresse_val.get()
     broadcast_val.get()
-    if adresse_val.get() == router_finder(ip_val['text'],masque_val['text']):
+    if adresse_val.get() == nadress_finder(ip_val['text'],masque_val['text']):
         if a_check==0:
             print("score+1 adresse reseau")
             score_difficulty()
@@ -173,9 +173,9 @@ difficult=tk.Label(jeu,text="diff",font=("Courier", 15),bg="red")
 
 ip=tk.Label(jeu,text="    IP",font=("Courier", 10)).grid(row=3,column=0)
 ip_val=tk.Label(jeu,text="xxx.xxx.xxx.xxx",anchor='e',justify='left')
-masque=tk.Label(jeu,text="Masque",font=("Courier", 10)).grid(row=4,column=0)
+masque=tk.Label(jeu,text="Mask",font=("Courier", 10)).grid(row=4,column=0)
 masque_val=tk.Label(jeu,text="xxx.xxx.xxx.xxx",anchor='e',justify='left')
-adresse=tk.Label(jeu,text="Router",font=("Courier", 10)).grid(row=6,column=0)
+adresse=tk.Label(jeu,text="Network Adress",font=("Courier", 10)).grid(row=6,column=0)
 adresse_val=tk.Entry(jeu,textvariable=solution_ip)
 broadcast=tk.Label(jeu,text="Broadcast",font=("Courier", 10)).grid(row=7,column=0)
 broadcast_val=tk.Entry(jeu,textvariable=solution_broadcast)
