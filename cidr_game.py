@@ -48,7 +48,7 @@ def ip_mask_randomizer():
 
 
 jeu= tk.Tk()
-jeu.title("Jeu CIDR")
+jeu.title("CIDR game")
 jeu.geometry("370x170")
 #jeu.resizable(False,False)
 
